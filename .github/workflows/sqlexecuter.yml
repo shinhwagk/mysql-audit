@@ -28,6 +28,8 @@ jobs:
           pip install -r requirements.txt
       - name: Test
         working-directory: ./src/sqlexecuter
+        env:
+          port: ${{ job.services.mysql.ports['3306'] }}
         run: |
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
-          python main_test.py ${{ job.services.mysql.ports['3306'] }}
+          python main_test.py
