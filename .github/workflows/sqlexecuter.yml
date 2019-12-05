@@ -47,6 +47,7 @@ jobs:
           # rs=$(curl -XGET -s http://127.0.0.1:1111)
           # # [[ "$rs" == "" ]] || exit 1
           curl -XPOST -s -H 'Content-Type: application/json' http://127.0.0.1:1111 -d '{"host":"$host","port":$port,"user":"$user","pass":"$pass","sqls":["create database test"]}'
+          curl -XPOST -H 'Content-Type: application/json' http://127.0.0.1:1111 -d '{"host":"$host","port":$port,"user":"$user","pass":"$pass","sqls":["create database test"]}'
           # # echo $rs
           # # [[ "$rs" == '["ok"]' ]] || exit 1
         env:
