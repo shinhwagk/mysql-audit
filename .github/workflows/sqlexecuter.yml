@@ -44,4 +44,4 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
           name: shinhwagk/sql_executoer:0.0.1
-          workdir: ./src/sqlexecuter
+          context: ./src/sqlexecuter
