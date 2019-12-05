@@ -45,6 +45,7 @@ jobs:
         run: |
           sleep 5
           curl -XGET -s http://127.0.0.1:1111 || exit 1
+          curl -XPOST -s http://127.0.0.1:1111 -d 'aaaa' || exit 1
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
