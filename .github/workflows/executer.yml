@@ -9,4 +9,4 @@ jobs:
         with:
           python-version: "3.8"
           architecture: "x64"
-      - run: cd sqlexecuter; python main_test.py
+      - run: cd src/sqlexecuter; python main_test.py
