@@ -12,10 +12,13 @@ jobs:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Verify MySQL connection from host
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
+      - uses: actions/cache@v1
+        name: xxxx
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       - uses: actions/checkout@master
       - uses: actions/setup-python@v1
         with:
