@@ -30,7 +30,7 @@ def execute_ddl(cursor, sql):
 
 
 def createDbConn(host, post, user, password, sqls):
-    cnx = mysql.connector.connect(host, post, user, password, sqls)
+    cnx = mysql.connector.connect(host=host, user=user, password=password)
     cursor = cnx.cursor()
     for sql in sqls:
         execute_ddl(cursor, sql)
