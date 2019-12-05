@@ -43,8 +43,10 @@ jobs:
         run: python main.py & sleep 5
       - name: Rest Api Test
         run: |
-          curl -XGET -s http://127.0.0.1:1111 || exit 1
-          rs=$(curl -XPOST -s http://127.0.0.1:1111 -H 'Content-Type: application/json' -d '{"host":"$host","port":$port,"user":"$user","pass":"$pass", "sqls":["create database test"]}')
+          rs=$(curl -XGET -s http://127.0.0.1:1111)
+          # [[ "$rs" == "" ]] || exit 1
+          rs=$(curl -XPOST -s http://127.0.0.1:1111 -H 'Content-Type: application/json' -d '{"host":"$host","port":$port,"user":"$user","pass":"$pass","sqls":["create database test"]}')
+          echo $rs
           [[ "$rs" == '["ok"]' ]] || exit 1
         env:
           port: ${{ job.services.mysql.ports['3306'] }}
