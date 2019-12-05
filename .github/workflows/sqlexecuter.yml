@@ -33,8 +33,10 @@ jobs:
         working-directory: ./src/sqlexecuter
         env:
           port: ${{ job.services.mysql.ports['3306'] }}
+          host: 127.0.0.1
+          password: password
+          user: root
         run: |
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
           python main_test.py
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@2.8
