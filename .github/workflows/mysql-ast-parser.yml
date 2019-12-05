@@ -1,18 +1,18 @@
 name: Publish Docker Hub
 on: [push]
 jobs:
-  build:
+  test-host:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-go@v1
-        with:
-          go-version: "1.13.4"
-      # - run: go get -v github.com/shinhwagk/mysqld_exporter
-      # - run: go build -o mysqld_exporter
-      # - name: Publish to Registry
-      #   uses: elgohr/Publish-Docker-Github-Action@2.8
-      #   with:
-      #     name: shinhwagk/mysqld_exporter:0.0.2
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
