@@ -44,7 +44,8 @@ jobs:
       - name: Rest Api Test
         run: |
           curl -XGET -s http://127.0.0.1:1111 || exit 1
-          curl -XPOST -s http://127.0.0.1:1111 -d '{{"host":"$host","port":$port,"user":"$user","pass":"$pass", "sqls":["create database test"]}}' || exit 1
+          rs=$(curl -XPOST -s http://127.0.0.1:1111 -H 'Content-Type: application/json' -d '{"host":"$host","port":$port,"user":"$user","pass":"$pass", "sqls":["create database test"]}')
+          [[ "$rs" == '["ok"]' ]] || exit 1
         env:
           port: ${{ job.services.mysql.ports['3306'] }}
           host: 127.0.0.1
