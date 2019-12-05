@@ -30,11 +30,13 @@ def execute_ddl(cursor, sql):
 
 
 def createDbConn(host, post, user, password, sqls):
-    cnx = mysql.connector.connect(**config)
+    cnx = mysql.connector.connect(host, post, user, password, sqls)
+    cursor = cnx.cursor()
     for sql in sqls:
-        c = cnx.cursor()
-        c.execute(sql)
-        c.close()
+        execute_ddl(cursor, sql)
+    cursor.close()
+    cnx.close()
+    return 1
 
 
 class MainHTTPRequestHandler(BaseHTTPRequestHandler):
