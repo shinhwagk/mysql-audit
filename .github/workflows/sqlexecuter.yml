@@ -29,7 +29,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Test
+      - name: Unit Test
         working-directory: ./src/sqlexecuter
         env:
           port: ${{ job.services.mysql.ports['3306'] }}
@@ -38,8 +38,10 @@ jobs:
           user: root
         run: |
           python main_test.py
+      - name: Rest Api Test
+        run: echo a
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.8
+        uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
           name: shinhwagk/sql_executoer:0.0.1
           workdir: ./src/sqlexecuter
