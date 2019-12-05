@@ -12,6 +12,8 @@ jobs:
       - run: cd src/sqlexecuter && ls -l ./
       - name: Install dependencies
         run: |
+          pwd
+          ls -l ./ 
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - run: python main_test.py
