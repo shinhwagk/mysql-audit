@@ -29,9 +29,9 @@ def execute_ddl(cursor, sql):
         exit(1)
 
 
-def createDbConn(host, post, user, password, sqls):
+def createDbConn(host, port, user, password, sqls):
     cnx = mysql.connector.connect(
-        host='127.0.0.1', user='root', password='password')
+        host='127.0.0.1', user='root', port=port, password='password')
     # cursor = cnx.cursor()
     # for sql in sqls:
     #     execute_ddl(cursor, sql)
