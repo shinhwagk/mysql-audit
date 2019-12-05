@@ -38,8 +38,12 @@ jobs:
           user: root
         run: |
           python main_test.py
+      - name: Running sqlexecuter
+        working-directory: ./src/sqlexecuter
+        run: python main.py
       - name: Rest Api Test
-        run: echo a
+        run: |
+          curl -XGET http://127.0.0.1:1111 || exit 1
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
