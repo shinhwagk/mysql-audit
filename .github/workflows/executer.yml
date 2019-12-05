@@ -1,4 +1,4 @@
-name: Publish Docker Hub
+name: sql executer
 on: [push]
 jobs:
   build:
