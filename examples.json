@@ -1,0 +1,80 @@
+[
+    {
+        "Name": {
+            "Schema": {
+                "O": "",
+                "L": ""
+            },
+            "Table": {
+                "O": "",
+                "L": ""
+            },
+            "Name": {
+                "O": "a",
+                "L": "a"
+            }
+        },
+        "Tp": {
+            "Tp": 3,
+            "Flag": 0,
+            "Flen": 2,
+            "Decimal": -1,
+            "Charset": "",
+            "Collate": "",
+            "Elems": null
+        },
+        "Options": [
+            {
+                "Tp": 1,
+                "Expr": null,
+                "Stored": false,
+                "Refer": null,
+                "StrValue": "",
+                "Enforced": false
+            },
+            {
+                "Tp": 3,
+                "Expr": null,
+                "Stored": false,
+                "Refer": null,
+                "StrValue": "",
+                "Enforced": false
+            }
+        ]
+    },
+    {
+        "Name": {
+            "Schema": {
+                "O": "",
+                "L": ""
+            },
+            "Table": {
+                "O": "",
+                "L": ""
+            },
+            "Name": {
+                "O": "b",
+                "L": "b"
+            }
+        },
+        "Tp": {
+            "Tp": 3,
+            "Flag": 0,
+            "Flen": -1,
+            "Decimal": -1,
+            "Charset": "",
+            "Collate": "",
+            "Elems": null
+        },
+        "Options": [
+            {
+                "Tp": 2,
+                "Expr": null,
+                "Stored": false,
+                "Refer": null,
+                "StrValue": "",
+                "Enforced": false
+            }
+        ]
+    }
+]
