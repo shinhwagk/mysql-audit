@@ -23,7 +23,7 @@ WORKDIR /email_server
 
 COPY --from=builder /usr/local/lib/python3.8/ /usr/local/lib/python3.8/
 
-COPY . .
+COPY main.py .
 
 EXPOSE 8080
 ENTRYPOINT [ "python", "main.py" ]
