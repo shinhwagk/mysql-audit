@@ -44,7 +44,7 @@ jobs:
       - name: Rest Api Test
         run: |
           sleep 5
-          curl -XGET http://127.0.0.1:1111 || exit 1
+          curl -XGET -s http://127.0.0.1:1111 || exit 1
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
