@@ -9,7 +9,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
         ports:
-          - 3306
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Verify MySQL connection from host
@@ -30,4 +30,4 @@ jobs:
         working-directory: ./src/sqlexecuter
         run: |
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
-          python main_test.py
+          python main_test.py ${{ job.services.mysql.ports['3306'] }}
