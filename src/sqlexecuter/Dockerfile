@@ -21,7 +21,7 @@ RUN apt-get -qq update \
 
 WORKDIR /email_server
 
-COPY --from=builder /usr/local/lib/python3.7/ /usr/local/lib/python3.7/
+COPY --from=builder /usr/local/lib/python3.8/ /usr/local/lib/python3.8/
 
 COPY . .
 
