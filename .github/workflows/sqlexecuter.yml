@@ -40,12 +40,16 @@ jobs:
           python main_test.py
       - name: Running sqlexecuter
         working-directory: ./src/sqlexecuter
-        run: python main.py &
+        run: python main.py & sleep 5
       - name: Rest Api Test
         run: |
-          sleep 5
           curl -XGET -s http://127.0.0.1:1111 || exit 1
-          curl -XPOST -s http://127.0.0.1:1111 -d 'aaaa' || exit 1
+          curl -XPOST -s http://127.0.0.1:1111 -d '{{"host":"$host","port":$port,"user":"$user","pass":"$pass", "sqls":["create database test"]}}' || exit 1
+        env:
+          port: ${{ job.services.mysql.ports['3306'] }}
+          host: 127.0.0.1
+          pass: password
+          user: root
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@2.9
         with:
