@@ -1,73 +1,62 @@
 import mysql.connector
+from json import loads, dumps
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-# config = {
-#     'user': 'root',
-#     'password': '123456',
-#     'host': '10.65.193.51',
-#     'database': '',
-#     'raise_on_warnings': True
-# }
 
-# cnx = mysql.connector.connect(**config)
-# cursor = cnx.cursor()
-# cursor.execute(
-#     "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
-# cursor.close()
-# cnx.close()
+def executeDMLs(cnx, sqls):
+    return 2
 
 
-def abc():
-    return 6
+def createDBcnx(host, port, user, password):
+    return mysql.connector.connect(
+        host=host, user=user, port=port, password=password)
 
 
-def execute_ddl(cursor, sql):
+def executeDDLs(cnx, sqls):
+    rs = []
+    c = cnx.cursor()
+    rs = list(map(lambda x: executeDDL(c, x), sqls))
+    c.close()
+    return rs
+
+
+def executeDDL(c, sql):
     try:
-        cursor.execute(sql)
-    except mysql.connector.Error as err:
-        print("Failed creating database: {}".format(err))
-        exit(1)
+        c.execute(sql)
+    except Exception as e:
+        return str(e)
+    else:
+        return "ok"
 
 
-def createDbConn(host, port, user, password, sqls):
-    cnx = mysql.connector.connect(
-        host='127.0.0.1', user='root', port=port, password='password')
-    # cursor = cnx.cursor()
-    # for sql in sqls:
-    #     execute_ddl(cursor, sql)
-    # cursor.close()
+def bootstrapExecuter(c):
+    rs = []
+    cnx = createDBcnx(c["host"], c["port"], c["user"], c["pass"])
+    rs = executeDDLs(cnx, c["sqls"])
     cnx.close()
-    return 1
+    return rs
 
 
 class MainHTTPRequestHandler(BaseHTTPRequestHandler):
-    def _set_headers(self):
+    def _set_headers(self, ct=None):
         self.send_response(200)
-        self.send_header("Content-type", "application/json")
+        ct and self.send_header("Content-type", ct)
         self.end_headers()
-
-    def _html(self, message):
-        """This just generates an HTML document that includes `message`
-        in the body. Override, or re-write this do do more interesting stuff.
-        """
-        content = f"<html><body><h1>{message}</h1></body></html>"
-        return content.encode("utf8")  # NOTE: must return a bytes object!
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write(self._html("hi!"))
+        self.wfile.writable()
 
     def do_POST(self):
-        # <--- Gets the size of data
-        content_length = int(self.headers['Content-Length'])
-        # <--- Gets the data itself
-        post_data = self.rfile.read(content_length)
+        """
+        request body: "host", "port", "user", "pass", "sqls"
+        """
+        body = self.rfile.read(int(self.headers['Content-Length']))
+        self._set_headers("application/json")
+        self.wfile.write(dumps(bootstrapExecuter(loads(body))).encode('utf-8'))
 
-        self.wfile.write("POST request for {}".format(
-            self.path).encode('utf-8'))
 
-
-def run(server_class=HTTPServer, handler_class=MainHTTPRequestHandler, port=8080):
+def run(server_class=HTTPServer, handler_class=MainHTTPRequestHandler, port=1111):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     try:
