@@ -9,10 +9,9 @@ jobs:
         with:
           python-version: "3.8"
           architecture: "x64"
-      - run: cd src/sqlexecuter && ls -l ./
       - name: Install dependencies
+        working-directory: ./src/sqlexecuter
         run: |
-          cd src/sqlexecuter
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           python main_test.py
