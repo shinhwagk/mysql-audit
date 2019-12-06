@@ -12,7 +12,7 @@ from http.server import HTTPServer
 """
 
 
-def httserver():
+def startHTTPServer():
     server = HTTPServer(("127.0.0.1", 12345), MainHTTPRequestHandler)
     server_thread = threading.Thread(target=server.serve_forever)
     server_thread.start()
@@ -37,6 +37,6 @@ class TestSum(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    httserver()
+    startHTTPServer()
     time.sleep(1)
     unittest.main()
