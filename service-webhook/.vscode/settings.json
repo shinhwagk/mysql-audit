@@ -1,4 +1,4 @@
 {
-  "ruby.useLanguageServer": true,
-  "remote.SSH.configFile": "/home/shinhwagk/testssh"
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

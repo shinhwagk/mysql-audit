@@ -1,4 +1,4 @@
-name: sql executer
+name: ci
 on: [push]
 jobs:
   build-sqlexecuter:
@@ -13,11 +13,11 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v1.1.1
         with:
           python-version: "3.8"
           architecture: "x64"
-      - uses: actions/cache@v1
+      - uses: actions/cache@v1.0.3
         name: action cache
         with:
           path: ~/.cache/pip
@@ -25,12 +25,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
       - name: Install dependencies
-        working-directory: ./src/sqlexecuter
+        working-directory: ./service-sqlexecuter
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Unit Test
-        working-directory: ./src/sqlexecuter
+        working-directory: ./service-sqlexecuter
         env:
           port: ${{ job.services.mysql.ports['3306'] }}
           host: 127.0.0.1
@@ -43,4 +43,24 @@ jobs:
           name: shinhwagk/sql_executer:0.0.1
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          context: ./src/sqlexecuter
+          context: ./service-sqlexecuter
+  build-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1.1.0
+        with:
+          ode-version: "12.x"
+      - uses: actions/cache@v1.0.3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.9
+        with:
+          name: shinhwagk/webhook:0.0.1
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          context: ./service-webhook

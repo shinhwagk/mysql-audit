@@ -1,0 +1,17 @@
+{
+  "name": "service-webhook",
+  "version": "1.0.0",
+  "description": "```sh docker run -t --rm -v `pwd`/main.rb:/main.rb ruby:2.6 ruby main.rb ```",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}
