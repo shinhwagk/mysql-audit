@@ -1,0 +1,61 @@
+{
+  "object_kind": "push",
+  "event_name": "push",
+  "before": "ce507d495def1ca60ad7ecb944517b37dccae3e9",
+  "after": "e250263adb5dafeb388e8c0ce7118e1bd9da5782",
+  "ref": "refs/heads/master",
+  "checkout_sha": "e250263adb5dafeb388e8c0ce7118e1bd9da5782",
+  "message": null,
+  "user_id": 1,
+  "user_name": "Administrator",
+  "user_username": "root",
+  "user_email": "",
+  "user_avatar": "https://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80\u0026d=identicon",
+  "project_id": 3,
+  "project": {
+    "id": 3,
+    "name": "TEST2",
+    "description": "",
+    "web_url": "http://192.168.2.40/root/test2",
+    "avatar_url": null,
+    "git_ssh_url": "git@192.168.2.40:root/test2.git",
+    "git_http_url": "http://192.168.2.40/root/test2.git",
+    "namespace": "Administrator",
+    "visibility_level": 0,
+    "path_with_namespace": "root/test2",
+    "default_branch": "master",
+    "ci_config_path": null,
+    "homepage": "http://192.168.2.40/root/test2",
+    "url": "git@192.168.2.40:root/test2.git",
+    "ssh_url": "git@192.168.2.40:root/test2.git",
+    "http_url": "http://192.168.2.40/root/test2.git"
+  },
+  "commits": [
+    {
+      "id": "e250263adb5dafeb388e8c0ce7118e1bd9da5782",
+      "message": "Add new file",
+      "timestamp": "2019-12-08T01:57:48Z",
+      "url": "http://192.168.2.40/root/test2/commit/e250263adb5dafeb388e8c0ce7118e1bd9da5782",
+      "author": {
+        "name": "Administrator",
+        "email": "admin@example.com"
+      },
+      "added": [
+        "README1.md"
+      ],
+      "modified": [],
+      "removed": []
+    }
+  ],
+  "total_commits_count": 1,
+  "push_options": {},
+  "repository": {
+    "name": "TEST2",
+    "url": "git@192.168.2.40:root/test2.git",
+    "description": "",
+    "homepage": "http://192.168.2.40/root/test2",
+    "git_http_url": "http://192.168.2.40/root/test2.git",
+    "git_ssh_url": "git@192.168.2.40:root/test2.git",
+    "visibility_level": 0
+  }
+}

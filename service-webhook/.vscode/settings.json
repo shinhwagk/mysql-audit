@@ -1,0 +1,4 @@
+{
+  "ruby.useLanguageServer": true,
+  "remote.SSH.configFile": "/home/shinhwagk/testssh"
+}

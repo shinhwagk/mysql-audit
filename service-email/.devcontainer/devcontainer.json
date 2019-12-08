@@ -1,0 +1,12 @@
+{
+    "name": "Service Email",
+    "dockerFile": "Dockerfile",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "postCreateCommand": "pip install -r requirements.txt",
+    "extensions": [
+        "ms-python.python",
+        "humao.rest-client"
+    ]
+}

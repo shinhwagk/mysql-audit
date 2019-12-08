@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "typescript-deno-plugin"
-      }
-    ]
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
   }
 }
