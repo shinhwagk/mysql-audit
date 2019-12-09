@@ -1,6 +1,25 @@
 name: ci
 on: [push]
 jobs:
+  test-golang:
+    runs-on: [ubuntu-18.04]
+    steps:
+      - uses: actions/setup-go@v1
+      - run: |
+          echo 'package main
+
+          import (
+            "fmt"
+
+            "github.com/pingcap/parser"
+          )
+
+          func main() {
+            fmt.Println("Hello, playground")
+            fmt.Println(parser.DigestHash("select 1"))
+          }' > main.go
+      - run: go get -v root@51fdf285364b:/go# go get  -v https://github.com/pingcap/parser
+      - run: go run main.go
   build-sqlexecuter:
     runs-on: ubuntu-latest
     services:
