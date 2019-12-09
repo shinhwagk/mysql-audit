@@ -16,7 +16,8 @@ jobs:
 
           func main() {
             fmt.Println("Hello, playground")
-            fmt.Println(parser.DigestHash("select 1"))
+            fmt.Println(parser.DigestHash("create table abc.a(a int)"))
+            fmt.Println(parser.DigestHash("create table   abc.a(a int  )"))
           }' > main.go
       - run: go get -v github.com/pingcap/parser
       - run: go run main.go
