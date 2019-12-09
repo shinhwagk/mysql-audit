@@ -18,7 +18,7 @@ jobs:
             fmt.Println("Hello, playground")
             fmt.Println(parser.DigestHash("select 1"))
           }' > main.go
-      - run: go get -v root@51fdf285364b:/go# go get  -v https://github.com/pingcap/parser
+      - run: go get -v github.com/pingcap/parser
       - run: go run main.go
   build-sqlexecuter:
     runs-on: ubuntu-latest
