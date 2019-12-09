@@ -27,14 +27,14 @@ function processWebhook(wh: IWebhook) {
   console.info(wh.checkout_sha)
 }
 
-function webhookHanlder(req: http.IncomingMessage, res: http.ServerResponse, use: (body) => void) {
-  const body = []
+function webhookHanlder(req: http.IncomingMessage, res: http.ServerResponse, use: (iw: IWebhook) => void) {
+  const body: string[] = []
   req.on('data', (c: string) => body.push(c))
-  req.on('end', () => { use(JSON.parse(body.join())); res.end(); })
+  req.on('end', () => { use(JSON.parse(body.join()) as IWebhook); res.end(); })
 }
 
 function onRequest(req: http.IncomingMessage, res: http.ServerResponse): void {
-  if (req.url === '/webhook' && req.method === 'POST') {
+  if (req.url === '/webhook/gitlab' && req.method === 'POST') {
     webhookHanlder(req, res, processWebhook)
     return
   }

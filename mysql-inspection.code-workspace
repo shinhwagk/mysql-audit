@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "service-webhook"
+		},
+		{
+			"path": "service-sqlexecuter"
+		},
+		{
+			"path": "service-email"
+		},
+		{
+			"path": "service-astparser"
+		},
+		{
+			"path": "service-checkout"
+		},
+		{
+			"path": "service-inspection"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "service-email",
+		"editor.tabSize": 2
+	}
+}
