@@ -19,7 +19,7 @@ jobs:
             fmt.Println(parser.DigestHash("create table abc.a(a int)"))
             fmt.Println(parser.DigestHash("create table   abc.a(a int  )"))
             fmt.Println(parser.DigestHash("creat1e table   abc.a(a int  )"))
-            fmt.Println(parser.TrimComment("／*aaa */creat1e table   abc.a(a int  )"))
+            fmt.Println(parser.TrimComment("   ／*aaa */creat1e table   abc.a(a int  )   "))
           }' > main.go
       - run: go get -v github.com/pingcap/parser
       - run: go run main.go
