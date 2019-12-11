@@ -1,8 +1,10 @@
 import * as http from 'http'
 
+import * as got from 'got'
+
 const SERVICE_PORT = process.env.SERVICE_PORT
-const CHECKOUT_HOST = process.env.CHECKOUT_HOST
-const CHECKOUT_PORT = process.env.CHECKOUT_PORT
+const checkoutSvcAddr = process.env.CHECKOUT_SERVICE_ADDR
+const checkoutSvcPort = process.env.CHECKOUT_SERVICE_PORT
 
 interface IWebhook {
   checkout_sha: string,
@@ -24,7 +26,6 @@ interface IWebhook {
 // }
 
 function processWebhook(wh: IWebhook) {
-  console.info(wh.checkout_sha)
 }
 
 function webhookHanlder(req: http.IncomingMessage, res: http.ServerResponse, use: (iw: IWebhook) => void) {

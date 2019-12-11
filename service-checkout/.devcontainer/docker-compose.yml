@@ -1,0 +1,16 @@
+version: "3"
+services:
+  checkout:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace
+    command: sleep infinity
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - /data/db

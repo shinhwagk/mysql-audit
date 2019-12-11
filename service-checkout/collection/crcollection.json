@@ -1,0 +1,19 @@
+{
+    "text": "",
+    "digest": "",
+    "timestamp": "",
+    "stages": {
+        "inpection": [
+            {
+                "timestamp": "",
+                "state": true,
+                "msg": ""
+            }
+        ],
+        "execute": {
+            "timestamp": "",
+            "state": "",
+            "msg": ""
+        }
+    }
+}

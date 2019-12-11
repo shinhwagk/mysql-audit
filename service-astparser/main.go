@@ -34,8 +34,13 @@ func handler(p *parser.Parser) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func digestHandler(w http.ResponseWriter, r *http.Request){
+	w.
+}
+
 func main() {
 	p := parser.New()
 	http.HandleFunc("/", handler(p))
+	http.HandleFunc("/digest", handler(p))
 	log.Fatal(http.ListenAndServe("localhost:8000", nil))
 }

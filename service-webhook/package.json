@@ -11,8 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/got": "^9.6.9",
     "@types/node": "^12.12.14",
     "jest": "^24.9.0",
     "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "got": "^10.0.3"
   }
 }

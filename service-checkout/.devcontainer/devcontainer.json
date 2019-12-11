@@ -1,11 +1,14 @@
 {
-    "name": "Servcie Gitlab Webhook",
-    "dockerFile": "Dockerfile",
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "postCreateCommand": "npm install"
-    // "extensions": [
-    //     "dbaeumer.vscode-eslint"
-    // ]
+	"name": "Service Checkout",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "checkout",
+	"workspaceFolder": "/workspace",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"postCreateCommand": "npm install",
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"humao.rest-client"
+	]
 }

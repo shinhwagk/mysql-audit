@@ -1,4 +1,5 @@
 sqls -> checkout - http -> inspection - rpc -> astparser
+        checkout    ->        http          -> 
         checkout       <- inspection <-
         checkout -> email
         checkout <-> sqlexecuter

@@ -1,0 +1,16 @@
+[
+    {
+        "kind": "gitlab",
+        "timestamp": "",
+        "sha": "",
+        "file": "",
+        "sqls": [
+            "text",
+            "text"
+        ],
+        "author": {
+            "name": "Administrator",
+            "email": "admin@example.com"
+        }
+    }
+]

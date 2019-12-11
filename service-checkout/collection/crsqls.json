@@ -1,0 +1,20 @@
+{
+    "text": "",
+    // "digest": "",
+    // "timestamp": "",
+    "stages": {
+        "inspections": [
+            {
+                "name": "",
+                "timestamp": "",
+                "state": true,
+                "msg": ""
+            }
+        ],
+        "execute": {
+            "timestamp": "",
+            "state": "",
+            "msg": ""
+        }
+    }
+}
