@@ -22,6 +22,7 @@ jobs:
             fmt.Println(parser.DigestHash("select * from db.tab"))
             fmt.Println(parser.DigestHash("select /* a */* from db.tab"))
             fmt.Println(parser.DigestHash("/* a */ select * from db.tab"))
+            fmt.Println(parser.DigestHash("select * from db.tab"))
             fmt.Println(parser.TrimComment("   /*aaa */creat1e table   abc.a(a int  )   "))
           }' > main.go
       - run: go get -v github.com/pingcap/parser
