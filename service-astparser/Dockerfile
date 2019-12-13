@@ -1,5 +1,9 @@
-FROM golang:1.13
+# FROM golang:1.13
 
-COPY astparser ./
+# COPY astparser ./
 
-CMD astparser
+# CMD astparser
+
+FROM alpine
+COPY astparser /
+ENTRYPOINT  ["/astparser"]

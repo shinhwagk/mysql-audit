@@ -9,8 +9,11 @@ services:
     command: sleep infinity
     links:
       - mongo
+      - astparser
   mongo:
     image: mongo
     restart: unless-stopped
     volumes:
       - /data/db
+  astparser:
+    image: shinhwagk/miastparser:0.0.1
