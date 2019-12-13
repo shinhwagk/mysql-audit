@@ -1,0 +1,13 @@
+GET http://127.0.0.1:7000/ HTTP/1.1
+
+###
+POST http://127.0.0.1:7000/digest HTTP/1.1
+Content-Type: text/plain
+
+create table abc(a int)
+
+###
+POST http://127.0.0.1:7000/astparser HTTP/1.1
+Content-Type: text/plain
+
+create table ABC.abc(a int)

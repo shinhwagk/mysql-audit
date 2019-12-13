@@ -90,3 +90,19 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           context: ./service-webhook
+  build-astparser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-go@master
+      - run: go get -v
+        working-directory: ./service-astparser
+      - run: go build -o astparser main.go
+        working-directory: ./service-astparser
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.9
+        with:
+          name: shinhwagk/miastparser:0.0.1
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          context: ./service-astparser
