@@ -99,8 +99,6 @@ jobs:
           go-version: "1.13.5"
       - run: |
           go env -w GO111MODULE="on"
-      - run: go get -v
-        working-directory: ./service-astparser
       - run: go build -o astparser main.go
         working-directory: ./service-astparser
       - name: Publish to Registry
