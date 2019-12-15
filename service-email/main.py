@@ -14,16 +14,15 @@ def load_template(name):
 
 class GitlabTemplateResource(object):
     def on_post(self, req, resp):
-        data1 = req.bounded_stream.read()
-
-        template = load_template('git.template.html.j2')
+        body = req.bounded_stream.read()
+        template = load_template('gitlab.template.html.j2')
         resp.status = falcon.HTTP_200
         resp.content_type = 'text/html'
-        resp.body = template.render(data=json.loads(data1))
+        mailBody = template.render(data=json.loads(body))
 
 
 app = falcon.API()
-app.add_route('/git', GitlabTemplateResource())
+app.add_route('/gitlab', GitlabTemplateResource())
 
 if __name__ == '__main__':
     httpd = simple_server.make_server('0.0.0.0', 7000, app)

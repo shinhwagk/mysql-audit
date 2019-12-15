@@ -35,14 +35,16 @@
       <th>i'n'pe'c'tinpect</th>
       <th>executer</th>
     </tr>
-  {% for sql in data.sqls %}<tr>
+  {%- for sql in data.sqls %}
+  <tr>
       <td>{{ loop.index }}</td>
       <td>
         <pre><code class="sql">{{sql.text}}</code></pre>
       </td>
       <td>{% if sql.inspect|length >= 1 %}{{sql.inspect}}{% endif %}</td>
       <td> fafafafa 11111 </td>
-    </tr>    {% endfor %}
+    </tr>    
+  {% endfor -%}
   </table>
 </body>
 

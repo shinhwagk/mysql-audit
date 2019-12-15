@@ -1,26 +1,30 @@
 import smtplib
+import os
+import sys
 from email.mime.text import MIMEText
 from email.header import Header
 
 
-sender = 'from@runoob.com'
-receivers = ['429240967@qq.com']
+envs = os.environ
+smtpuser = envs.get('USER') or print("env: USER") and sys.exit(1)
+smtppassword = envs.get('PASSWORD') or sys.exit(1)
+smtpurl = envs.get('SMTPURL') or print("env: SMTPURL") and sys.exit(1)
+smtpport = envs.get('SMTPPORT') or sys.exit(1)
 
-message = MIMEText(mail_msg, 'html', 'utf-8')
-message['From'] = Header("菜鸟教程", 'utf-8')
-message['To'] = Header("测试", 'utf-8')
 
-subject = 'Python SMTP 邮件测试'
-message['Subject'] = Header(subject, 'utf-8')
+def mailMessage(subject, _from, mailBody):
+    message = MIMEText(mailBody, 'html', 'utf-8')
+    message['Subject'] = Header(subject, 'utf-8')  # email外部标题显示
+    message['From'] = Header(_from, 'utf-8')  # 替换发现人邮箱，在email的显示
+    return message
 
-sender = 'thesender@gmail.com'
-receiver = 'whicheverreceiver@gmail.com'
-password = '’<put your password here>''
-smtpserver = smtplib.SMTP("smtp.gmail.com", 587)
-smtpserver.ehlo()
-smtpserver.starttls()
-smtpserver.ehlo
-smtpserver.login(sender, password)
-msg ='Subject: Demo\nThis is a demo
-smtpserver.sendmail(sender, receiver, msg)
-print('Sent')
+
+def sendMail(receivers, mailBody):
+    smtpserver = smtplib.SMTP_SSL(smtpurl, smtpport)
+    smtpserver.login(smtpuser, smtppassword)
+    smtpserver.sendmail(smtpuser, receivers, mailMessage(
+        'subject', 'from', mailBody).as_string())
+
+
+if __name__ == "__main__":
+    sendMail("326314646@qq.com", "<h1>abc</h1>")

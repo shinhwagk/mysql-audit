@@ -3,11 +3,13 @@
     "dockerFile": "Dockerfile",
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "python.pythonPath": "/usr/local/bin/python"
     },
     "postCreateCommand": "pip install -r requirements.txt",
     "extensions": [
         "ms-python.python",
-        "humao.rest-client"
+        "humao.rest-client",
+        "visualstudioexptteam.vscodeintellicode"
     ]
 }

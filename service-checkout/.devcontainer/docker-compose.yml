@@ -7,13 +7,32 @@ services:
     volumes:
       - ..:/workspace
     command: sleep infinity
+    environment:
+      ASTPARSER_SERVICE_ADDR: astparser
+      EMAIL_SERVICE_ADDR: emailnotifier
+      SQLEXECUTER_SERVICE_ADDR: sqlexecuter
     links:
-      - mongo
+      # - mongo
       - astparser
-  mongo:
-    image: mongo
-    restart: unless-stopped
-    volumes:
-      - /data/db
+      - mysql
+      - sqlexecuter
+  # mongo:
+  #   image: mongo
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /data/db
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234567890
+  initmysql:
+    image: mysql:5.7
+    command: mysql -hmysql -uroot -p1234567890 -e "create database test"
+    depends_on:
+      - mysql
   astparser:
     image: shinhwagk/miastparser:0.0.1
+  sqlexecuter:
+    image: shinhwagk/misqlexecuter:0.0.1
+  email:
+    image: shinhwagk/miemail:0.0.1

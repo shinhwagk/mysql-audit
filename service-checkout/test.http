@@ -1,4 +1,17 @@
-POST http://127.0.0.1:8000/webhook/gitlab HTTP/1.1
+POST http://127.0.0.1:7000/webhook/gitlab HTTP/1.1
 Content-Type: application/json
 
 {"abc":"aaa"}
+
+
+### sqlexecuter
+POST http://sqlexecuter:7000/executers HTTP/1.1
+Content-Type: application/json
+
+{"host": "mysql", "port": 3306, "user": "root", "pass": "1234567890", "sqls": ["create table test.abc(a int)"]}
+
+### astparser
+POST http://astparser:7000/astparser HTTP/1.1
+# Content-Type: application/json
+
+create table test.abc (a int primary key)
