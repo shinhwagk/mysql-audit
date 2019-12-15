@@ -56,7 +56,7 @@ class MainHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(dumps(bootstrapExecuter(loads(body))).encode('utf-8'))
 
 
-def run(server_class=HTTPServer, handler_class=MainHTTPRequestHandler, port=1111):
+def run(server_class=HTTPServer, handler_class=MainHTTPRequestHandler, port=7000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     try:
@@ -65,11 +65,6 @@ def run(server_class=HTTPServer, handler_class=MainHTTPRequestHandler, port=1111
         pass
     httpd.server_close()
 
-
 if __name__ == '__main__':
-    from sys import argv
-
-    if len(argv) == 2:
-        run(port=int(argv[1]))
-    else:
-        run()
+    print("sqlexecuter service start.")
+    run()
