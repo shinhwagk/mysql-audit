@@ -6,7 +6,8 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,500" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
-  <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/sql.min.js"></script>
+  <script charset="UTF-8"
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/sql.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <style>
@@ -20,7 +21,7 @@
   <h3>Change Request File</h3>
   <a>https://abcbcbc</a>
   <h3>Version has</h3>
-  <p> fafafafa </p>
+  <p> {{ data.sha }} </p>
   <h3>
     "author": {
     "name": "Jordi Mallach",
@@ -34,16 +35,14 @@
       <th>i'n'pe'c'tinpect</th>
       <th>executer</th>
     </tr>
-    {% for item in order.items %}
-    <tr>
-      <td> fafafafa </td>
-      <td >
-        <pre><code class="sql">create table a.bc(a int)</code></pre>
+  {% for sql in data.sqls %}<tr>
+      <td>{{ loop.index }}</td>
+      <td>
+        <pre><code class="sql">{{sql.text}}</code></pre>
       </td>
+      <td>{% if sql.inspect|length >= 1 %}{{sql.inspect}}{% endif %}</td>
       <td> fafafafa 11111 </td>
-      <td> fafafafa 11111 </td>
-    </tr>
-    {% endfor %}
+    </tr>    {% endfor %}
   </table>
 </body>
 

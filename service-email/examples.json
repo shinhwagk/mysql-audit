@@ -1,0 +1,13 @@
+{
+  "sha": "1111",
+  "sqls": [
+    {
+      "text": "create table a.11bc(a int)",
+      "inspect": "111"
+    },
+    {
+      "text": "create table a.11b1c(a int)",
+      "inspect": "222"
+    }
+  ]
+}
