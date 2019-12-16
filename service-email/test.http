@@ -2,17 +2,24 @@ POST http://127.0.0.1:7000/gitlab HTTP/1.1
 Content-Type: application/json
 
 {
-  "sha": "1111",
-  "sqls": [
-    {
-      "text": "create table a.11bc(a int)",
-      "inspects": ["abc"],
-      "execute":""
+  "template":{
+    "sha": "1111",
+    "author":{
+      "name":"shinhwagk",
+      "email":"abc@a.com"
     },
-    {
-      "text": "create table a.11b1c(a int)",
-      "inspects": ["222"],
-      "execute":""
-    }
-  ]
+    "sqls": [
+      {
+        "text": "create table a.11bc(a int)",
+        "inspects": ["abc"],
+        "execute":""
+      },
+      {
+        "text": "create table a.11b1c(a int)",
+        "inspects": ["222"],
+        "execute":""
+      }
+    ]
+  },
+  "receivers":["191631513@qq.com"]
 }

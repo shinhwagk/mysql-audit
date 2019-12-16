@@ -6,10 +6,12 @@ from email.header import Header
 
 
 envs = os.environ
-smtpuser = envs.get('USER') or print("env: USER") and sys.exit(1)
-smtppassword = envs.get('PASSWORD') or sys.exit(1)
+smtpuser = envs.get('SMTPUSER') or print("env: SMTPUSER") and sys.exit(1)
+smtppassword = envs.get('SMTPPASSWORD') or print(
+    "env: SMTPPASSWORD") and sys.exit(1)
 smtpurl = envs.get('SMTPURL') or print("env: SMTPURL") and sys.exit(1)
 smtpport = envs.get('SMTPPORT') or sys.exit(1)
+broadcastMails = envs.get('broadcast').split(',') or []
 
 
 def mailMessage(subject, _from, mailBody):
@@ -19,12 +21,12 @@ def mailMessage(subject, _from, mailBody):
     return message
 
 
-def sendMail(receivers, mailBody):
+def sendMail(receivers, subject, _from, mailBody):
     smtpserver = smtplib.SMTP_SSL(smtpurl, smtpport)
     smtpserver.login(smtpuser, smtppassword)
     smtpserver.sendmail(smtpuser, receivers, mailMessage(
-        'subject', 'from', mailBody).as_string())
+        subject, _from, mailBody).as_string())
 
 
 if __name__ == "__main__":
-    sendMail("326314646@qq.com", "<h1>abc</h1>")
+    sendMail("191631513@qq.com", "<h1>abc</h1>")

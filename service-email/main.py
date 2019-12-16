@@ -5,6 +5,8 @@ import falcon
 from jinja2 import Template
 from wsgiref import simple_server
 
+from mail import sendMail, broadcastMails
+
 
 def load_template(name):
     path = os.path.join('templates', name)
@@ -18,7 +20,10 @@ class GitlabTemplateResource(object):
         template = load_template('gitlab.template.html.j2')
         resp.status = falcon.HTTP_200
         resp.content_type = 'text/html'
-        mailBody = template.render(data=json.loads(body))
+        mailData = json.loads(body)
+        mailBody = template.render(data=mailData["template"])
+        sendMail(mailData["receivers"] +
+                 broadcastMails, "aaa", "bbb", mailBody)
 
 
 app = falcon.API()

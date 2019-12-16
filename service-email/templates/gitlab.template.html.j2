@@ -22,18 +22,17 @@
   <a>https://abcbcbc</a>
   <h3>Version has</h3>
   <p> {{ data.sha }} </p>
-  <h3>
-    "author": {
-    "name": "Jordi Mallach",
-    "email": "jordi@softcatala.org"
-    timestamp": "2011-12-12T14:27:31+02:00
-  </h3>
-  <table style="width:100%">
+  <h3> Author </h3>
+  <table border="1">
+  <tr><td>{{data.author.name}}</td><td>{{data.author.email}}</td></tr>
+  </table>
+  <h3>SQLS</h3>
+  <table style="width:100%" border="1">
     <tr>
       <th>Id</th>
       <th>SQL TEXT</th>
-      <th>i'n'pe'c'tinpect</th>
-      <th>executer</th>
+      <th>Inspects Result</th>
+      <th>Execute Result</th>
     </tr>
   {%- for sql in data.sqls %}
   <tr>
