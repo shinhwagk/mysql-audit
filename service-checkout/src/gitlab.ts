@@ -1,27 +1,31 @@
 import * as KoaRouter from 'koa-router';
 import { CRSqlGroup } from './input_sqls';
 import { IGitlabEmail, sendGitlabResult } from './email';
+import { readDbsConfig, IDataSource } from './dbs';
 // import { insertSQLS } from './mongo';
 
-interface GitlabWebHook {
+interface IGitlabWebHook {
     checkout_sha: string,
-    commits?: { author?: { name: string, email: string }, modified?: string[], added?: string[], timestamp?: string }[]
+    repository: {
+        homepage: string,
+    }
+    commits?: { file: string, author?: { name: string, email: string }, modified?: string[], added?: string[], timestamp?: string }[]
 }
 
-// function parseWebHook(gwh: GitlabWebHook) {
-//     gwh
-// }
-
 export function handler(ctx: KoaRouter.IRouterContext): void {
-    const body = ctx.request.body as GitlabWebHook
+    const body = ctx.request.body as IGitlabWebHook
     console.debug(body)
     ctx.res.end()
     async () => {
-        await gitlabInspect("mysql", 3306, "", "", ["create table abc.abc (a int)"], body)
+        for (const c of body.commits!) {
+            const dbs: IDataSource = readDbsConfig("test")
+            gitlabInspect(dbs.host, dbs.port, dbs.user, dbs.pass,
+                ["create table abc.abc (a int)"], body)
+        }
     }
 }
 
-async function gitlabInspect(host: string, port: number, user: string, pass: string, sqls: string[], body: GitlabWebHook) {
+async function gitlabInspect(host: string, port: number, user: string, pass: string, sqls: string[], body: IGitlabWebHook) {
     const csg = new CRSqlGroup(host, port, user, pass, sqls)
     await csg.inspectionSQLs()
     await csg.executeSQLs()
@@ -38,6 +42,5 @@ async function gitlabInspect(host: string, port: number, user: string, pass: str
         url: "",
         sqls: ispectRs
     }
-
     await sendGitlabResult(mailInfo)
 }

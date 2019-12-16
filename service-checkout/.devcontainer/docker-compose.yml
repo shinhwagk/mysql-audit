@@ -38,9 +38,9 @@ services:
     image: shinhwagk/miemail:0.0.1
     env_file:
       - ./smtp.env
-  gitlab:
-    image: gitlab/gitlab-ce
-    ports:
-      - "8081:80"
-    environment:
-      - GITLAB_OMNIBUS_CONFIG="external_url 'http://10.65.103.78:8081/'; gitlab_rails['lfs_enabled'] = true;"
+  # gitlab:
+  #   image: gitlab/gitlab-ce
+  #   ports:
+  #     - "8081:80"
+  #   environment:
+  #     - GITLAB_OMNIBUS_CONFIG="external_url 'http://10.65.103.78:8081/'; gitlab_rails['lfs_enabled'] = true;"

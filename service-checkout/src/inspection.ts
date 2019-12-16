@@ -16,6 +16,10 @@ export async function executeSql(host: string, port: number, user: string, pass:
     return res.body
 }
 
+export async function readGitlabFile(url: string): Promise<string> {
+    return (await got.get<string>(url)).body
+}
+
 interface TOP {
     Kind: string
     Ast: any
