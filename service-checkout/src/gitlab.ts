@@ -14,6 +14,7 @@ interface GitlabWebHook {
 
 export function handler(ctx: KoaRouter.IRouterContext): void {
     const body = ctx.request.body as GitlabWebHook
+    console.debug(body)
     ctx.res.end()
     async () => {
         await gitlabInspect("mysql", 3306, "", "", ["create table abc.abc (a int)"], body)

@@ -15,3 +15,30 @@ POST http://astparser:7000/astparser HTTP/1.1
 # Content-Type: application/json
 
 create table test.abc (a int primary key)
+
+### email
+POST http://email:7000/gitlab HTTP/1.1
+Content-Type: application/json
+
+{
+  "template":{
+    "sha": "1111",
+    "author":{
+      "name":"shinhwagk",
+      "email":"abc@a.com"
+    },
+    "sqls": [
+      {
+        "text": "create table a.11bc(a int)",
+        "inspects": ["abc"],
+        "execute":""
+      },
+      {
+        "text": "create table a.11b1c(a int)",
+        "inspects": ["222"],
+        "execute":""
+      }
+    ]
+  },
+  "receivers":["191631513@qq.com"]
+}

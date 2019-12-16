@@ -9,14 +9,7 @@ const koa = new Koa()
 const koaRouter = new KoaRouter()
 
 koaRouter.get("/", (ctx) => ctx.res.end())
-
-interface ABC {
-    a: string
-}
-
-
 koaRouter.post("/webhook/gitlab", gitlabHandler)
-
 // koaRouter.post("/file", routeHandler2)
 koaRouter.post("/sqls", sqlsHandler)
 
